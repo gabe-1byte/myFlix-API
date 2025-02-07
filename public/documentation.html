@@ -10,6 +10,18 @@
             The application will give users infoformatio about different things related to movies, 
             for example, directors, genres, actors, etc. Users will be able to sign up, update their
             own personal info, and compile a list of their favorite movies.
-            </p>
+        </p>
+        <h2>Endpoints:</h2>
+        <ul>
+            <li>The endpoint "/users" is a POST request that adds a new user to the list of users. It is also a GET request that returns a list of all users is .json format</li>
+            <li>The endpoint "/users/:id/:movieTitle" is a POST request that adds a movie to a user's list of favorite movies. It is also a DELETE request that removes a movie from a user's list of favorite movies.</li>
+            <li>The endpoint "/users/:id" is a PUT request that updates a user's info. It is also a DELETE request that removes a user from the list of users.</li>
+            <li>The enpoint "/movies" is a GET request that returns a list of all movies in .json format.</li>
+            <li>The endpoint "/movies/:Title" is a GET request that returns a single movie by title in .json format</li>
+            <li>The endpoint "/movies/genre/:genreName" is a GET request that returns a single genre by name in .json format</li>
+            <li>The endpoint "/movies/director/:directorName" is a GET request that returns a single director by name in .json format</li>
+            <li>The endpoint "/" is a GET request that displays a welcome message</li>
+            <li>The endpoint "/documentation" displays this documentation.html page</li>
+        </ul>
     </body>
 </html>
