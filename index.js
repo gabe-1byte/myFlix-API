@@ -31,7 +31,16 @@ let users = [
     {
         id: 2,
         name: 'Sam',
-        favoriteMovies: []
+        favoriteMovies: [
+            'The Mask'
+        ]
+    },
+    {
+        id: 3,
+        name: 'Alex',
+        favoriteMovies: [
+            'The Dark Knight', 'Kurt Cobain: Montage of Heck'
+        ]
     }
 ]
 
@@ -46,7 +55,7 @@ let movies = [
         Director:{
             Name: 'Alex Proyas',
             Bio: 'Alex Proyas is an Australian filmmaker, screenwriter, and producer. He is best known for his work in the fantasy and science fiction genres, with films such as "The Crow," "Dark City," and "I, Robot." Proyas is recognized for his visually striking style and ability to create atmospheric worlds in his films.',
-            Birth: '1967',
+            Birth: '1963',
             Death: 'N/A'
         },
         imgeURL: 'https://posters.movieposterdb.com/09_11/1994/109506/l_109506_3096a83e.jpg',
@@ -98,7 +107,7 @@ let movies = [
             Death: 'N/A'
         },
         imageURL: 'https://posters.movieposterdb.com/22_06/2001/120737/l_120737_0ff31144.jpg',
-        featured: true
+        featured: false
     },
     {
         Title: 'Kurt Cobain: Montage of Heck',
@@ -130,7 +139,7 @@ let movies = [
             Death: 'N/A'
         },
         imageURL: 'https://posters.movieposterdb.com/08_06/2008/468569/l_468569_fe24b125.jpg',
-        featured: true
+        featured: false
     },
     {
         Title: 'Dumb and Dumber',
@@ -146,14 +155,14 @@ let movies = [
             Death: 'N/A'
         },
         imageURL: 'https://posters.movieposterdb.com/11_04/1994/109686/l_109686_d708d01a.jpg',
-        featured: true
+        featured: false
     },
     {
         Title: 'The Mask',
         Description: 'Bank clerk Stanley Ipkiss is transformed into a manic superhero when he wears a mysterious mask.',
         Genre: {
-            Name: 'Fantasy',
-            Description: 'Fantasy films are characterized by magical elements, mythical creatures, and imaginative worlds. They often involve quests, adventures, and the battle between good and evil, allowing for the exploration of complex themes in a fantastical setting.'
+            Name: 'Comedy',
+            Description: 'Comedy films are designed to elicit laughter from the audience. They often feature exaggerated characters, humorous situations, and witty dialogue, exploring themes of love, friendship, and the absurdities of life.'
         },
         Director: {
             Name: 'Chuck Russell',
@@ -162,7 +171,7 @@ let movies = [
             Death: 'N/A'
         },
         imageURL: 'https://posters.movieposterdb.com/08_11/1994/110475/l_110475_1b7b7311.jpg',
-        featured: true
+        featured: false
     },
     {
         Title: 'Wayne\'s World',
@@ -178,7 +187,7 @@ let movies = [
             Death: 'N/A'
         },
         imageURL: 'https://posters.movieposterdb.com/08_05/1992/105793/l_105793_80a48abc.jpg',
-        featured: true
+        featured: false
     },
     {
         Title: 'Pearl Jam Twenty',
@@ -192,7 +201,7 @@ let movies = [
             Bio: 'Cameron Crowe is an American filmmaker, producer, and screenwriter known for his work in the romantic comedy and drama genres. He gained fame for films like "Almost Famous," "Jerry Maguire," and "Say Anything." Crowe is recognized for his ability to blend music with storytelling and his exploration of youth culture.'
         },
         imageURL: 'https://posters.movieposterdb.com/11_09/2011/1417592/s_1417592_62a57e20.jpg',
-        featured: true
+        featured: false
     }
 ];
 
