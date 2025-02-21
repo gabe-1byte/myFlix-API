@@ -13,15 +13,69 @@
         </p>
         <h2>Endpoints:</h2>
         <ul>
-            <li>The endpoint "/users" is a POST request that adds a new user to the list of users. It is also a GET request that returns a list of all users is .json format</li>
-            <li>The endpoint "/users/:id/:movieTitle" is a POST request that adds a movie to a user's list of favorite movies. It is also a DELETE request that removes a movie from a user's list of favorite movies.</li>
-            <li>The endpoint "/users/:id" is a PUT request that updates a user's info. It is also a DELETE request that removes a user from the list of users.</li>
-            <li>The enpoint "/movies" is a GET request that returns a list of all movies in .json format.</li>
-            <li>The endpoint "/movies/:Title" is a GET request that returns a single movie by title in .json format</li>
-            <li>The endpoint "/movies/genre/:genreName" is a GET request that returns a single genre by name in .json format</li>
-            <li>The endpoint "/movies/director/:directorName" is a GET request that returns a single director by name in .json format</li>
-            <li>The endpoint "/" is a GET request that displays a welcome message</li>
-            <li>The endpoint "/documentation" displays this documentation.html page</li>
+            <li>The endpoint <code>/users</code> supports:
+                <ul>
+                    <li><strong>POST</strong>: Creates a new user.</li>
+                    <li><strong>GET</strong>: Returns a list of all users in JSON format.</li>
+                </ul>
+            </li>
+            
+            <li>The endpoint <code>/users/:Username/movies/:MovieID</code> supports:
+                <ul>
+                    <li><strong>POST</strong>: Adds a movie to a user's list of favorite movies.</li>
+                    <li><strong>DELETE</strong>: Removes a movie from a user's list of favorite movies.</li>
+                </ul>
+            </li>
+            
+            <li>The endpoint <code>/users/:Name</code> supports:
+                <ul>
+                    <li><strong>GET</strong>: Retrieves a specific user by their name.</li>
+                </ul>
+            </li>
+        
+            <li>The endpoint <code>/users/:name</code> supports:
+                <ul>
+                    <li><strong>PUT</strong>: Updates a user's information.</li>
+                    <li><strong>DELETE</strong>: Removes a user from the database.</li>
+                </ul>
+            </li>
+        
+            <li>The endpoint <code>/movies</code> supports:
+                <ul>
+                    <li><strong>GET</strong>: Returns a list of all movies in JSON format.</li>
+                </ul>
+            </li>
+        
+            <li>The endpoint <code>/movies/:movieTitle</code> supports:
+                <ul>
+                    <li><strong>GET</strong>: Retrieves a single movie by its title.</li>
+                </ul>
+            </li>
+        
+            <li>The endpoint <code>/movies/genre/:genreName</code> supports:
+                <ul>
+                    <li><strong>GET</strong>: Retrieves details of a genre by its name.</li>
+                </ul>
+            </li>
+        
+            <li>The endpoint <code>/movies/director/:directorName</code> supports:
+                <ul>
+                    <li><strong>GET</strong>: Retrieves details of a director by their name.</li>
+                </ul>
+            </li>
+        
+            <li>The endpoint <code>/</code> supports:
+                <ul>
+                    <li><strong>GET</strong>: Displays a welcome message.</li>
+                </ul>
+            </li>
+        
+            <li>The endpoint <code>/documentation</code> supports:
+                <ul>
+                    <li><strong>GET</strong>: Displays this documentation page.</li>
+                </ul>
+            </li>
         </ul>
+        
     </body>
 </html>
