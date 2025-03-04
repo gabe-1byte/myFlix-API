@@ -26,6 +26,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
+
 let users = [
     {
         id: 1,
@@ -276,7 +280,7 @@ app.post('/users/:Username/movies/:MovieID', async (req, res) => {
 });
 
 // READ
-app.get('/users', async (req, res) => {
+app.get('/users', passport.authenticate('jwt', { session: false }), async (req, res) => {
     await Users.find()
         .then((users) => {
             res.status(201).json(users);
@@ -302,7 +306,7 @@ app.get('/users/:Name', async (req, res) => {
         });
 });
 
-app.get('/movies', async (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
     await Movies.find()
         .then((movies) => {
             res.status(201).json(movies);
