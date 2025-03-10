@@ -274,7 +274,11 @@ app.post('/users',
                     email: req.body.email,
                     birthday: req.body.birthday
                 })
-                .then((user) =>{res.status(201).json(user)})
+                .then((user) => {
+                    // remove password from response for security
+                    user.password = undefined;
+                    res.status(201).json(user);
+                })
                 .catch((error) => {
                     console.error(error);
                     res.status(500).send('Error: ' + error);
@@ -401,13 +405,17 @@ app.put('/users/:name',
         await Users.findOneAndUpdate({name: req.body.name}, {$set:
           {
             name: req.body.name,
-            password: req.body.password,
+            password: hashedPassword,
             email: req.body.email,
             birthday: req.body.birthday
           }
         },
         {new: true})
-        .then((updatedUser) => {res.status(201).json(updatedUser);})
+        .then((updatedUser) => {
+            // Remove password from the response for security
+            updatedUser.password = undefined;
+            res.status(201).json(updatedUser);
+        })
         .catch((err) => {
           console.error(err);
           res.status(500).send('Error:' + err);
