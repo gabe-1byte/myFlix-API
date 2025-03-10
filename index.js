@@ -458,6 +458,10 @@ app.use((err, req, res, next) => {
     res.status(500).send('You\'ve encountered an error!');
 });
 
+app.get('/', (req, res) => {
+    res.sendFile('public/index.html', {root: __dirname});
+});
+
 // listen for requests
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0', () => {
