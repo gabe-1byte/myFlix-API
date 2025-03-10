@@ -383,21 +383,35 @@ app.get('/movies/director/:directorName', async (req, res) => {
 });
 
 // UPDATE 
-app.put('/users/:name', async (req, res) => {
-    await Users.findOneAndUpdate({name: req.body.name}, {$set:
-      {
-        name: req.body.name,
-        password: req.body.password,
-        email: req.body.email,
-        birthday: req.body.birthday
-      }
-    },
-    {new: true})
-    .then((updatedUser) => {res.status(201).json(updatedUser);})
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error:' + err);
-    })
+app.put('/users/:name',
+    [
+        check('name', 'Username is required').isLength({min: 5}),
+        check('name', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+        check('password', 'Password is required').not().isEmpty(),
+        check('email', 'Email does not appear to be valid').isEmail()
+    ], async (req, res) => {
+
+        // check the validation object for errors
+        let errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() });
+        }
+
+        await Users.findOneAndUpdate({name: req.body.name}, {$set:
+          {
+            name: req.body.name,
+            password: req.body.password,
+            email: req.body.email,
+            birthday: req.body.birthday
+          }
+        },
+        {new: true})
+        .then((updatedUser) => {res.status(201).json(updatedUser);})
+        .catch((err) => {
+          console.error(err);
+          res.status(500).send('Error:' + err);
+        })
 });
 
 // DELETE
