@@ -313,8 +313,8 @@ app.get('/users', passport.authenticate('jwt', { session: false }), async (req, 
         });
 });
 
-app.get('/users/:Name', async (req, res) => {
-    await Users.findOne({ Name: req.params.Name })
+app.get('/users/:name', async (req, res) => {
+    await Users.findOne({ Name: req.params.name })
         .then((user) => {
             if (user) {
                 res.json(user);
