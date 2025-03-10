@@ -462,6 +462,10 @@ app.get('/', (req, res) => {
     res.sendFile('public/index.html', {root: __dirname});
 });
 
+app.get('/documentation', (req, res) => {
+    res.sendFile('public/documentation.html', {root: __dirname});
+});
+
 // listen for requests
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0', () => {
