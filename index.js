@@ -261,37 +261,35 @@ app.post('/users',
             return res.status(422).json({ errors: errors.array() });
         }
         
-    let hashedPassword = Users.hashPassword(req.body.password);
-    await Users.findOne({name: req.body.name})
-        .then((user) => {
-            if(user) {
-                return res.status(400).send(req.body.name + ' already exists!');
-            } else {
-                Users
-                .create({
-                    name: req.body.name,
-                    password: hashedPassword,
-                    email: req.body.email,
-                    birthday: req.body.birthday
-                })
-                .then((user) => {
-                    // remove password from response for security
-                    user.password = undefined;
-                    res.status(201).json(user);
-                })
-                .catch((error) => {
-                    console.error(error);
-                    res.status(500).send('Error: ' + error);
-                })
-            }
-        })
-        .catch((error) => {
-            console.error(error);
-            res.status(500).send('Error: ' + error);
-        }); 
+        let hashedPassword = Users.hashPassword(req.body.password);
+        await Users.findOne({name: req.body.name})
+            .then((user) => {
+                if(user) {
+                    return res.status(400).send(req.body.name + ' already exists!');
+                } else {
+                    Users
+                    .create({
+                        name: req.body.name,
+                        password: hashedPassword,
+                        email: req.body.email,
+                        birthday: req.body.birthday
+                    })
+                    .then((user) => {
+                        res.status(201).json(user);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        res.status(500).send('Error: ' + error);
+                    })
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                res.status(500).send('Error: ' + error);
+            }); 
 });
 
-app.post('/users/:Username/movies/:MovieID', async (req, res) => {
+app.post('/users/:name/movies/:MovieID', async (req, res) => {
     await Users.findOneAndUpdate({name: req.params.name}, {
         $push: {FavoriteMovies: req.params.MovieID}
     },
@@ -402,7 +400,8 @@ app.put('/users/:name',
             return res.status(422).json({ errors: errors.array() });
         }
 
-        await Users.findOneAndUpdate({name: req.body.name}, {$set:
+        let hashedPassword = Users.hashPassword(req.body.password);
+        await Users.findOneAndUpdate({name: req.params.name}, {$set:
           {
             name: req.body.name,
             password: hashedPassword,
@@ -412,8 +411,6 @@ app.put('/users/:name',
         },
         {new: true})
         .then((updatedUser) => {
-            // Remove password from the response for security
-            updatedUser.password = undefined;
             res.status(201).json(updatedUser);
         })
         .catch((err) => {
@@ -423,7 +420,7 @@ app.put('/users/:name',
 });
 
 // DELETE
-app.delete('/users/:Username/movies/:MovieID', async (req, res) => {
+app.delete('/users/:name/movies/:MovieID', async (req, res) => {
     await Users.findOneAndUpdate({name: req.params.name}, {
         $pull: {FavoriteMovies: req.params.MovieID}
     },
@@ -452,15 +449,6 @@ app.delete('/users/:name', async (req, res) => {
         });
     });
 
-// GET requests
-app.get('/', (req, res) => {
-    res.send('Welcome to my top movie list!');
-});
-
-app.use(morgan('common'));
-
-app.use(express.static('public'));
-
 // error handling
 
 app.use(methodOverride());
@@ -469,7 +457,6 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('You\'ve encountered an error!');
 });
-
 
 // listen for requests
 const port = process.env.PORT || 8080;
