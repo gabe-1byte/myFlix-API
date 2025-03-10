@@ -9,6 +9,8 @@ const { Deserializer } = require('v8');
 
 const app = express();
 
+const { check, validationResult } = require('express-validator');
+
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 const Movies = Models.Movie;
@@ -26,9 +28,13 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
+
+let auth = require('./auth')(app);
+
+const cors = require('cors');
+app.use(cors());
 
 let users = [
     {
@@ -239,7 +245,22 @@ let movies = [
 ];
 
 // CREATE
-app.post('/users', async (req, res) => {
+app.post('/users',
+    [
+        check('name', 'Username is required').isLength({min: 5}),
+        check('name', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+        check('password', 'Password is required').not().isEmpty(),
+        check('email', 'Email does not appear to be valid').isEmail()
+    ], async (req, res) => {
+
+        // check the validation object for errors
+        let errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() });
+        }
+        
+    let hashedPassword = Users.hashPassword(req.body.password);
     await Users.findOne({name: req.body.name})
         .then((user) => {
             if(user) {
@@ -248,7 +269,7 @@ app.post('/users', async (req, res) => {
                 Users
                 .create({
                     name: req.body.name,
-                    password: req.body.password,
+                    password: hashedPassword,
                     email: req.body.email,
                     birthday: req.body.birthday
                 })
@@ -428,6 +449,7 @@ app.use((err, req, res, next) => {
 
 
 // listen for requests
-app.listen(8080, () => {
-    console.log('Your app is listening on port 8080');
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0', () => {
+    console.log('Your app is listening on port ' + port);
 });
