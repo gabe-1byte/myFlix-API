@@ -7,7 +7,7 @@
     <body>
         <h1>Overview:</h1>
         <p>This project is a server-side component for a movies web app. 
-            The application will give users infoformatio about different things related to movies, 
+            The application will give users information about different things related to movies, 
             for example, directors, genres, actors, etc. Users will be able to sign up, update their
             own personal info, and compile a list of their favorite movies.
         </p>
@@ -20,21 +20,16 @@
                 </ul>
             </li>
             
-            <li>The endpoint <code>/users/:Username/movies/:MovieID</code> supports:
+            <li>The endpoint <code>/users/:name/movies/:MovieID</code> supports:
                 <ul>
                     <li><strong>POST</strong>: Adds a movie to a user's list of favorite movies.</li>
                     <li><strong>DELETE</strong>: Removes a movie from a user's list of favorite movies.</li>
                 </ul>
             </li>
             
-            <li>The endpoint <code>/users/:Name</code> supports:
-                <ul>
-                    <li><strong>GET</strong>: Retrieves a specific user by their name.</li>
-                </ul>
-            </li>
-        
             <li>The endpoint <code>/users/:name</code> supports:
                 <ul>
+                    <li><strong>GET</strong>: Retrieves a specific user by their name.</li>
                     <li><strong>PUT</strong>: Updates a user's information.</li>
                     <li><strong>DELETE</strong>: Removes a user from the database.</li>
                 </ul>
@@ -67,12 +62,6 @@
             <li>The endpoint <code>/</code> supports:
                 <ul>
                     <li><strong>GET</strong>: Displays a welcome message.</li>
-                </ul>
-            </li>
-        
-            <li>The endpoint <code>/documentation</code> supports:
-                <ul>
-                    <li><strong>GET</strong>: Displays this documentation page.</li>
                 </ul>
             </li>
         </ul>
