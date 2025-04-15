@@ -34,12 +34,17 @@ require('./passport');
 
 let auth = require('./auth')(app);
 
-const cors = require('cors');
+const cors = require("cors");
+
 app.use(cors({
     origin: "http://localhost:1234", // Allow requests from your frontend
     methods: ["GET", "POST", "PUT", "DELETE"], // Allow specific HTTP methods
-    allowedHeaders: ["Content-Type", "Authorization"] // Allow specific headers
+    allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
+    credentials: true // Allow cookies if needed
 }));
+
+// Handle preflight requests
+app.options("*", cors());
 
 let users = [
     {
