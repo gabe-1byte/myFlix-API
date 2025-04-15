@@ -35,7 +35,7 @@ require('./passport');
 let auth = require('./auth')(app);
 
 const cors = require('cors');
-app.use(cors());
+app.use(cors({ origin: "http://localhost:1234" }));
 
 let users = [
     {
