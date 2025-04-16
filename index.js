@@ -9,6 +9,17 @@ const { Deserializer } = require('v8');
 
 const app = express();
 
+const cors = require("cors");
+
+app.use(cors({
+    origin: "*", // Allow requests from any origin
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allow specific HTTP methods
+    allowedHeaders: ["Content-Type", "Authorization"] // Allow specific headers
+}));
+
+// Handle preflight requests
+app.options("*", cors());
+
 const { check, validationResult } = require('express-validator');
 
 const mongoose = require('mongoose');
@@ -33,17 +44,6 @@ const passport = require('passport');
 require('./passport');
 
 let auth = require('./auth')(app);
-
-const cors = require("cors");
-
-app.use(cors({
-    origin: "*", // Allow requests from any origin
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allow specific HTTP methods
-    allowedHeaders: ["Content-Type", "Authorization"] // Allow specific headers
-}));
-
-// Handle preflight requests
-app.options("*", cors());
 
 let users = [
     {
