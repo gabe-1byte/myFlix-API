@@ -39,7 +39,7 @@ const cors = require("cors");
 app.use(cors({
     origin: "*", // Allow requests from any origin
     methods: ["GET", "POST", "PUT", "DELETE"], // Allow specific HTTP methods
-    allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
+    allowedHeaders: ["Content-Type", "Authorization"] // Allow specific headers
 }));
 
 // Handle preflight requests
