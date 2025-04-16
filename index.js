@@ -37,7 +37,7 @@ let auth = require('./auth')(app);
 const cors = require("cors");
 
 app.use(cors({
-    origin: "http://localhost:1234", // Allow requests from your frontend
+    origin: "*", // Allow requests from any origin
     methods: ["GET", "POST", "PUT", "DELETE"], // Allow specific HTTP methods
     allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
     credentials: true // Allow cookies if needed
